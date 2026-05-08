@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <!-- Etiquetas para que parezca una App nativa -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0f1113"> <!-- El color de fondo de tu app -->
+</head>
+<body>
+    <div class="calc-card">
+        <!-- Menú de Categorías -->
+        <div class="header">
+            <select id="mode-selector" onchange="changeCategory()">
+                <option value="basic">🧮 Calculadora</option>
+                <option value="length">📏 Longitud</option>
+                <option value="weight">⚖️ Peso</option>
+            </select>
+        </div>
+
+        <!-- Pantalla Calculadora Normal -->
+        <div id="basic-screen" class="screen">
+            <div id="sub-display"></div>
+            <div id="main-display">0</div>
+        </div>
+
+        <!-- Pantalla Conversor (Estilo Xiaomi) -->
+        <div id="converter-screen" class="screen" style="display: none;">
+            <div class="conv-box">
+                <select id="unit-from" onchange="convert()"></select>
+                <div id="val-from" class="active-text">0</div>
+            </div>
+            <div class="conv-box">
+                <select id="unit-to" onchange="convert()"></select>
+                <div id="val-to">0</div>
+            </div>
+        </div>
+
+        <!-- Teclado -->
+        <div class="keypad">
+            <button class="btn-ctrl" onclick="clearAll()">AC</button>
+            <button class="btn-ctrl" onclick="backspace()">DEL</button>
+            <button class="btn-op" onclick="setOp('/')">÷</button>
+            <button class="btn-op" onclick="setOp('*')">×</button>
+
+            <button onclick="press('7')">7</button>
+            <button onclick="press('8')">8</button>
+            <button onclick="press('9')">9</button>
+            <button class="btn-op" onclick="setOp('-')">-</button>
+
+            <button onclick="press('4')">4</button>
+            <button onclick="press('5')">5</button>
+            <button onclick="press('6')">6</button>
+            <button class="btn-op" onclick="setOp('+')">+</button>
+
+            <button onclick="press('1')">1</button>
+            <button onclick="press('2')">2</button>
+            <button onclick="press('3')">3</button>
+            <button class="btn-equal" onclick="execute()">=</button>
+
+            <button class="btn-zero" onclick="press('0')">0</button>
+            <button onclick="press('.')">.</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+</script>
+</body>
+</html>

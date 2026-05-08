@@ -1,0 +1,119 @@
+:root {
+    --bg: #0f1113;
+    --card: #1c1f23;
+    --display: #121417;
+    --accent: #ff8c00; /* Naranja estilo Xiaomi */
+    --text: #e1e1e1;
+    --op: #3a3f44;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calc-card {
+    background: var(--card);
+    width: 340px;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.header { margin-bottom: 15px; text-align: center; }
+
+#mode-selector {
+    background: #2d3238;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+}
+
+.screen {
+    background: var(--display);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: right;
+    margin-bottom: 20px;
+    min-height: 80px;
+}
+
+/* Estilos específicos del conversor */
+.conv-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+.conv-box:first-child { border-bottom: 1px solid #2d3238; }
+
+.conv-box select {
+    background: transparent;
+    color: #aaa;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+.conv-box div { font-size: 26px; color: #555; }
+.active-text { color: var(--accent) !important; font-weight: bold; }
+
+#sub-display { color: #aaa; font-size: 14px; min-height: 20px; }
+#main-display { font-size: 40px; font-weight: 300; }
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+button {
+    height: 60px;
+    border: none;
+    border-radius: 12px;
+    background: #2d3238;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+button:active { background: #3d434a; }
+.btn-op { color: var(--accent); font-weight: bold; }
+.btn-ctrl { color: #ff5f56; }
+.btn-equal { background: var(--accent); color: white; }
+.btn-zero { grid-column: span 2; }
+/* 1. Hace que el texto se haga más pequeño si el número es muy largo */
+#main-display {
+    font-size: 40px;
+    font-weight: 300;
+    overflow-x: auto; /* Permite scroll horizontal si el número es gigante */
+    white-space: nowrap; /* Evita que el número se parta en dos líneas */
+    direction: ltr; /* Mantiene la alineación correcta */
+}
+
+/* 2. Personaliza la barra de scroll para que no se vea fea (opcional) */
+#main-display::-webkit-scrollbar {
+    height: 4px;
+}
+#main-display::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+/* 3. Para el modo conversor, evita que los números se encimen */
+.conv-box div {
+    font-size: 26px;
+    max-width: 180px; /* Limita el ancho del texto */
+    overflow-x: auto;
+    white-space: nowrap;
+}

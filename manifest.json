@@ -1,0 +1,15 @@
+{
+  "name": "Enterprise Calc Pro",
+  "short_name": "MultiCalc",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0f1113",
+  "theme_color": "#ff8c00",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/564/564429.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
