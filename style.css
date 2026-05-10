@@ -1,16 +1,16 @@
 :root {
-    --bg: #0f1113;
-    --card: #1c1f23;
-    --display: #121417;
-    --accent: #ff8c00; /* Naranja estilo Xiaomi */
-    --text: #e1e1e1;
-    --op: #3a3f44;
+    --bg: #000000;
+    --card: #5e6472;
+    --display: #D95C7A;
+    --accent: #D95C7A; /* Naranja estilo Xiaomi */
+    --text: #c9002f;
+    --op: #000000;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Consolas', 'Courier New', monospace;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,4 +116,10 @@ button:active { background: #3d434a; }
     max-width: 180px; /* Limita el ancho del texto */
     overflow-x: auto;
     white-space: nowrap;
+}
+.display {
+    /* ESTILO DE NUMEROS*/
+    font-family: 'Consolas', 'Courier New', monospace; 
+    font-weight: bold; /* Para que resalte más */
+    letter-spacing: 2px; /* Espacio para que se vea bienSS*/
 }
