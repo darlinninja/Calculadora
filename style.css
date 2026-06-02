@@ -1,125 +1,188 @@
 :root {
-    --bg: #000000;
-    --card: #5e6472;
-    --display: #D95C7A;
-    --accent: #D95C7A; /* Naranja estilo Xiaomi */
-    --text: #c9002f;
-    --op: #000000;
+    --cyan: #00f2ff;
+    --blue: #008cff;
+    --dark: #00080a;
+    --glow: rgba(0, 242, 255, 0.4);
 }
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: 'Consolas', 'Courier New', monospace;
+    background-color: #000;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
+    background-image: 
+        radial-gradient(circle at center, #001f22 0%, #000 85%),
+        linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+.hologram-suite {
+    position: relative;
+    width: 50vh; 
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    margin-bottom: 20px;
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    filter: drop-shadow(0 0 15px var(--cyan));
+}
+
+.ring-outer {
+    width: 100%; height: 100%;
+    border: 3px solid var(--cyan);
+    border-top-color: transparent;
+    opacity: 0.2;
+    animation: rotate 15s linear infinite;
+}
+
+.ring-mid {
+    width: 80%; height: 80%;
+    border: 2px dashed var(--cyan);
+    opacity: 0.4;
+    animation: rotate-reverse 10s linear infinite;
+}
+
+#jarvis-orb {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, #fff 0%, var(--cyan) 40%, #002e33 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 80px var(--cyan), inset 0 0 30px #fff;
+    z-index: 10;
+}
+
+.interface-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    z-index: 20;
+}
+
+.status-text {
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 12px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-shadow: 0 0 20px var(--cyan);
     margin: 0;
 }
 
-.calc-card {
-    background: var(--card);
-    width: 340px;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
-
-.header { margin-bottom: 15px; text-align: center; }
-
-#mode-selector {
-    background: #2d3238;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    outline: none;
+#btn-escuchar {
+    background: rgba(0, 242, 255, 0.05);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    padding: 15px 45px;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
     cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    border-radius: 2px;
 }
 
-.screen {
-    background: var(--display);
+#btn-escuchar:hover {
+    background: var(--cyan);
+    color: #000;
+    box-shadow: 0 0 50px var(--cyan);
+    transform: scale(1.1);
+}
+
+#btn-imagen {
+    background: rgba(0, 140, 255, 0.05);
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    padding: 10px 30px;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    border-radius: 2px;
+    margin-top: -10px;
+}
+
+#btn-imagen:hover {
+    background: var(--blue);
+    color: #000;
+    box-shadow: 0 0 30px var(--blue);
+    transform: scale(1.05);
+}
+
+.hud-derecho {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    max-height: 70vh;
+    background: rgba(0, 242, 255, 0.02);
+    border-right: 3px solid var(--cyan);
+    border-top: 1px solid rgba(0, 242, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 242, 255, 0.2);
     padding: 20px;
-    border-radius: 12px;
-    text-align: right;
-    margin-bottom: 20px;
-    min-height: 80px;
-}
-
-/* Estilos específicos del conversor */
-.conv-box {
+    backdrop-filter: blur(8px);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
-.conv-box:first-child { border-bottom: 1px solid #2d3238; }
-
-.conv-box select {
-    background: transparent;
-    color: #aaa;
-    border: none;
-    font-size: 16px;
-    outline: none;
-    cursor: pointer;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: inset -10px 0 20px rgba(0, 242, 255, 0.05);
+    z-index: 30;
 }
 
-.conv-box div { font-size: 26px; color: #555; }
-.active-text { color: var(--accent) !important; font-weight: bold; }
-
-#sub-display { color: #aaa; font-size: 14px; min-height: 20px; }
-#main-display { font-size: 40px; font-weight: 300; }
-
-.keypad {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+.hud-header {
+    color: var(--cyan);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    opacity: 0.7;
+    border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+    padding-bottom: 5px;
 }
 
-button {
-    height: 60px;
-    border: none;
-    border-radius: 12px;
-    background: #2d3238;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-}
-button:active { background: #3d434a; }
-.btn-op { color: var(--accent); font-weight: bold; }
-.btn-ctrl { color: #ff5f56; }
-.btn-equal { background: var(--accent); color: white; }
-.btn-zero { grid-column: span 2; }
-/* 1. Hace que el texto se haga más pequeño si el número es muy largo */
-#main-display {
-    font-size: 40px;
-    font-weight: 300;
-    overflow-x: auto; /* Permite scroll horizontal si el número es gigante */
-    white-space: nowrap; /* Evita que el número se parta en dos líneas */
-    direction: ltr; /* Mantiene la alineación correcta */
+.hud-texto {
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-family: monospace;
+    letter-spacing: 1px;
+    overflow-y: auto;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
-/* 2. Personaliza la barra de scroll para que no se vea fea (opcional) */
-#main-display::-webkit-scrollbar {
-    height: 4px;
+.hud-texto::-webkit-scrollbar {
+    width: 4px;
 }
-#main-display::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 10px;
+.hud-texto::-webkit-scrollbar-thumb {
+    background: var(--cyan);
+    border-radius: 2px;
 }
 
-/* 3. Para el modo conversor, evita que los números se encimen */
-.conv-box div {
-    font-size: 26px;
-    max-width: 180px; /* Limita el ancho del texto */
-    overflow-x: auto;
-    white-space: nowrap;
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes rotate-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+
+.speaking-glow {
+    animation: core-pulse 0.5s infinite alternate;
 }
-.display {
-    /* ESTILO DE NUMEROS*/
-    font-family: 'Consolas', 'Courier New', monospace; 
-    font-weight: bold; /* Para que resalte más */
-    letter-spacing: 2px; /* Espacio para que se vea bienSS*/
+
+@keyframes core-pulse {
+    0% { transform: scale(1); filter: brightness(1); }
+    100% { transform: scale(1.15); filter: brightness(1.6); }
 }
